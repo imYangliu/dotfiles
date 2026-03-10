@@ -34,6 +34,7 @@ Core tools expected by the current configs:
 Optional but recommended:
 
 - `bash-completion`
+- `cloudflared` (required when connecting to `git-ssh.linu.me`)
 - `eza` or `exa`
 - `zoxide`
 
