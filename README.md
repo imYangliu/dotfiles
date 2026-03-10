@@ -7,6 +7,7 @@ Minimal `stow`-managed dotfiles repo.
 Current packages:
 
 - `bash`
+- `dircolors`
 - `git`
 - `inputrc`
 - `ssh`
@@ -24,6 +25,7 @@ Minimum required to deploy the repo:
 Core tools expected by the current configs:
 
 - `bash`
+- `dircolors` (provided by `coreutils` on macOS/Homebrew)
 - `zsh`
 - `tmux`
 - `vim`
@@ -35,6 +37,7 @@ Optional but recommended:
 
 - `bash-completion`
 - `cloudflared` (required when connecting to `git-ssh.linu.me`)
+- `coreutils` (needed on macOS if you want `dircolors`)
 - `eza` or `exa`
 - `zoxide`
 
@@ -48,7 +51,7 @@ sudo apt-get install -y git stow bash bash-completion zsh tmux vim fzf ripgrep o
 macOS/Homebrew example:
 
 ```bash
-brew install git stow bash zsh tmux vim fzf ripgrep openssh
+brew install git stow bash zsh tmux vim fzf ripgrep openssh coreutils
 ```
 
 `fzf` does not need extra manual shell setup as long as it is installed in a standard Debian or Homebrew location. `zsh/.zshrc` auto-detects the common `fzf` completion and key-binding script paths and loads them automatically.
@@ -64,7 +67,7 @@ brew install git stow bash zsh tmux vim fzf ripgrep openssh
 ```bash
 git clone <your-dotfiles-repo> ~/dotfiles
 cd ~/dotfiles
-stow bash git inputrc ssh tmux vim zsh
+stow bash dircolors git inputrc ssh tmux vim zsh
 exec zsh
 tmux source-file ~/.tmux.conf 2>/dev/null || true
 ```
@@ -104,7 +107,7 @@ Apply all packages:
 
 ```bash
 cd ~/dotfiles
-stow bash git inputrc ssh tmux vim zsh
+stow bash dircolors git inputrc ssh tmux vim zsh
 ```
 
 Dry-run a package without modifying anything:
@@ -127,9 +130,3 @@ Remove a package's symlinks:
 cd ~/dotfiles
 stow -D tmux
 ```
-
-## Next
-
-Next packages to add later:
-
-- `dircolors`
