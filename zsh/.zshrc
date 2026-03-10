@@ -51,17 +51,44 @@ if (( $+commands[fzf] )); then
 
   _source_first_readable \
     /usr/share/doc/fzf/examples/completion.zsh \
+    /usr/share/fzf/shell/completion.zsh \
     /usr/share/fzf/completion.zsh \
     /opt/homebrew/opt/fzf/shell/completion.zsh \
     /usr/local/opt/fzf/shell/completion.zsh
 
   _source_first_readable \
     /usr/share/doc/fzf/examples/key-bindings.zsh \
+    /usr/share/fzf/shell/key-bindings.zsh \
     /usr/share/fzf/key-bindings.zsh \
     /opt/homebrew/opt/fzf/shell/key-bindings.zsh \
     /usr/local/opt/fzf/shell/key-bindings.zsh
 fi
 unfunction _source_first_readable
+
+if (( $+commands[fzf] )) && (( ! ${+widgets[fzf-cd-widget]} )); then
+  # Fallback for minimal fzf installs that ship the binary without zsh widgets.
+  function fzf-cd-widget() {
+    emulate -L zsh
+    setopt localoptions pipefail no_aliases
+
+    local dir
+    dir=$(
+      command find -L . \
+        \( -path '*/.git' -o -path '*/node_modules' -o -path '*/.venv' -o -path '*/venv' -o -path '*/dist' -o -path '*/build' -o -path '*/target' \) -prune \
+        -o -type d -print 2>/dev/null |
+        sed -e 's#^\./##' -e '/^$/d' |
+        command fzf --height="${FZF_TMUX_HEIGHT:-40%}" --reverse --prompt='cd> '
+    )
+    [[ -n "$dir" ]] || {
+      zle redisplay
+      return 0
+    }
+
+    BUFFER="cd -- ${(q)dir}"
+    zle accept-line
+  }
+  zle -N fzf-cd-widget
+fi
 
 # Vim-style editing in the shell.
 bindkey -v
