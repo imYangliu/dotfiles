@@ -1,0 +1,7 @@
+# Machine-local readline overrides.
+
+# Example: switch back to emacs keybindings on one host.
+# set editing-mode emacs
+
+# Example: suppress the mode prompt prefix if you do not want it in bash.
+# set show-mode-in-prompt off

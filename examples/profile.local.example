@@ -1,0 +1,6 @@
+# Machine-local login-shell overrides.
+
+# Example: override editor on one machine.
+# export EDITOR=nvim
+# export VISUAL=nvim
+

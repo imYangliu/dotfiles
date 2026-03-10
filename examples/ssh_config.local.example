@@ -1,0 +1,8 @@
+# Host-specific SSH entries.
+
+Host example
+  HostName example.com
+  User root
+  IdentityFile ~/.ssh/example_key
+  IdentitiesOnly yes
+  StrictHostKeyChecking accept-new

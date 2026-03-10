@@ -1,0 +1,19 @@
+# Machine-local bash overrides.
+
+# Example: disable vi editing mode for bash on one machine.
+# set +o vi
+
+# Example: add a machine-specific binary path.
+# export PATH="$HOME/bin:$PATH"
+
+# Example: machine-local HTTP proxy.
+# export HTTP_PROXY="http://127.0.0.1:7890"
+# export HTTPS_PROXY="http://127.0.0.1:7890"
+# export http_proxy="$HTTP_PROXY"
+# export https_proxy="$HTTPS_PROXY"
+# export NO_PROXY="localhost,127.0.0.1,::1"
+# export no_proxy="$NO_PROXY"
+# alias no-http-proxy='unset HTTP_PROXY HTTPS_PROXY http_proxy https_proxy NO_PROXY no_proxy'
+
+# Example: machine-local proxy wrapper alias.
+# alias codex-external='with-ali-proxy codex'

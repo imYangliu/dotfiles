@@ -1,0 +1,57 @@
+[include]
+    path = ~/.gitconfig.local
+
+[user]
+    useConfigOnly = true
+
+[core]
+    editor = vim
+    excludesfile = ~/.gitignore_global
+    pager = less -FRX
+
+[init]
+    defaultBranch = main
+
+[color]
+    ui = auto
+
+[column]
+    ui = auto
+
+[help]
+    autocorrect = prompt
+
+[fetch]
+    prune = true
+
+[pull]
+    rebase = false
+
+[push]
+    autoSetupRemote = true
+
+[rebase]
+    autoStash = true
+
+[rerere]
+    enabled = true
+
+[merge]
+    conflictstyle = zdiff3
+
+[diff]
+    algorithm = histogram
+
+[tag]
+    sort = version:refname
+
+[alias]
+    st = status -sb
+    sw = switch
+    co = checkout
+    br = branch
+    ci = commit
+    amend = commit --amend
+    last = log -1 --stat
+    lg = log --graph --decorate --date=short --pretty=format:'%C(yellow)%h%Creset %Cgreen%ad%Creset %C(cyan)%an%Creset %C(auto)%d%Creset %s'
+

@@ -1,0 +1,9 @@
+# Keep machine- or identity-specific Git settings out of the shared repo.
+
+[user]
+    name = Your Name
+    email = you@example.com
+
+[core]
+    sshCommand = ssh -F ~/.ssh/config
+

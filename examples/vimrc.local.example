@@ -1,0 +1,12 @@
+" Machine-local Vim overrides.
+
+" Example: keep absolute line numbers only on one host.
+" set norelativenumber
+
+" Example: change indentation defaults for a machine-specific workflow.
+" set tabstop=2
+" set shiftwidth=2
+" set softtabstop=2
+
+" Example: disable mouse integration on one host.
+" set mouse=

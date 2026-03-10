@@ -1,0 +1,12 @@
+# Machine-local tmux overrides.
+#
+# Copy to ~/.tmux.conf.local when you need host-specific tweaks that should
+# not live in the shared dotfiles repo.
+
+# Example: switch back to the default prefix on one machine.
+# unbind C-a
+# set -g prefix C-b
+# bind C-b send-prefix
+
+# Example: make the status line easier to distinguish on a remote host.
+# set -g status-style "fg=colour231,bg=colour52"

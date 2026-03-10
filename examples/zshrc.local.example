@@ -1,0 +1,13 @@
+# Machine-local zsh overrides.
+
+# Example: disable AUTO_CD on one host.
+# unsetopt AUTO_CD
+
+# Example: use the classic emacs-style shell keybindings.
+# bindkey -e
+
+# Example: customize the prompt for a single machine.
+# PROMPT='%F{red}%n@%m%f:%F{green}%~%f %# '
+
+# Example: machine-local proxy wrapper alias.
+# alias codex-external='with-ali-proxy codex'

@@ -1,0 +1,58 @@
+# Common readline defaults for terminal-heavy development.
+
+$include /etc/inputrc
+
+set editing-mode vi
+set bell-style none
+set enable-bracketed-paste on
+set completion-ignore-case on
+set completion-map-case on
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+set menu-complete-display-prefix on
+set page-completions off
+set mark-symlinked-directories on
+set colored-stats on
+set colored-completion-prefix on
+set visible-stats on
+set blink-matching-paren off
+set skip-completed-text on
+
+# Home/End and Ctrl-arrow word movement across terminal variants.
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+"\e[3~": delete-char
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+
+$if mode=vi
+set keymap vi-insert
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\eOA": history-search-backward
+"\eOB": history-search-forward
+Control-l: clear-screen
+Control-p: history-search-backward
+Control-n: history-search-forward
+
+set keymap vi-command
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\eOA": history-search-backward
+"\eOB": history-search-forward
+Control-l: clear-screen
+$endif
+
+$if Bash
+set show-mode-in-prompt on
+set vi-cmd-mode-string "(cmd) "
+set vi-ins-mode-string "(ins) "
+$endif
+
+$include ~/.inputrc.local
