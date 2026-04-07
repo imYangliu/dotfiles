@@ -11,6 +11,7 @@ Current packages:
 - `git`
 - `inputrc`
 - `ssh`
+- `starship`
 - `tmux`
 - `vim`
 - `zsh`
@@ -39,6 +40,7 @@ Optional but recommended:
 - `cloudflared` (required when connecting to `git-ssh.linu.me`)
 - `coreutils` (needed on macOS if you want `dircolors`)
 - `eza` or `exa`
+- `starship` (if you want the shared prompt package)
 - `zoxide`
 
 Debian/Ubuntu example:
@@ -67,7 +69,7 @@ brew install git stow bash zsh tmux vim fzf ripgrep openssh coreutils
 ```bash
 git clone <your-dotfiles-repo> ~/dotfiles
 cd ~/dotfiles
-stow bash dircolors git inputrc ssh tmux vim zsh
+stow bash dircolors git inputrc ssh starship tmux vim zsh
 exec zsh
 tmux source-file ~/.tmux.conf 2>/dev/null || true
 ```
@@ -107,7 +109,7 @@ Apply all packages:
 
 ```bash
 cd ~/dotfiles
-stow bash dircolors git inputrc ssh tmux vim zsh
+stow bash dircolors git inputrc ssh starship tmux vim zsh
 ```
 
 Dry-run a package without modifying anything:
@@ -121,7 +123,7 @@ Restow a package after changing its layout:
 
 ```bash
 cd ~/dotfiles
-stow -R zsh
+stow -R starship zsh
 ```
 
 Remove a package's symlinks:

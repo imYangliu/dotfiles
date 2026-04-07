@@ -9,5 +9,10 @@
 # Example: customize the prompt for a single machine.
 # PROMPT='%F{red}%n@%m%f:%F{green}%~%f %# '
 
+# Example: enable Starship using the shared default config.
+# if (( $+commands[starship] )); then
+#   eval "$(starship init zsh)"
+# fi
+
 # Example: machine-local proxy wrapper alias.
 # alias codex-external='with-ali-proxy codex'
