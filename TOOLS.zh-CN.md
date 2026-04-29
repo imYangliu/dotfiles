@@ -7,6 +7,7 @@
 | `dircolors` | 提供 GNU `LS_COLORS`，用于让 GNU `ls` 按文件类型显示颜色；macOS/Homebrew 下来自 `coreutils`。 | shell 配置会在存在 `~/.dircolors` 时加载它。常见用法：`dircolors -b ~/.dircolors` 输出可被 shell 执行的颜色配置。 |
 | `fzf` | 交互式模糊搜索器，用于搜索历史、跳目录、选择 git 状态/日志、筛选文件等。 | Fish 使用 `patrickf1/fzf.fish` 插件。快捷键：`Ctrl-R` 搜历史，`Ctrl-G` 搜目录，`Ctrl-S` 搜 git status，`Ctrl-L` 搜 git log，`Ctrl-P` 搜进程，`Ctrl-V` 搜变量。常见用法：`fzf`、`git branch \| fzf`。 |
 | `ripgrep` / `rg` | 高性能递归文本搜索工具，常用于替代 `grep -R`。 | 没有配置别名，直接使用。常见用法：`rg pattern`、`rg -n "TODO" src`、`rg --files`、`rg -i pattern`。 |
+| `ripgrep-all` / `rga` | `ripgrep` 的扩展封装，可搜索 PDF、Office 文档、电子书、压缩包、SQLite 数据库和媒体 metadata 等富文件类型。 | 没有配置别名；代码搜索继续用 `rg`，文档/二进制富文件搜索用 `rga`。常见用法：`rga keyword ~/Documents`、`rga -i invoice .`。 |
 | `fd` | 更快、更好用的文件查找工具，常用于替代很多 `find` 场景。 | Fish 别名：`f='fd'`。常见用法：`fd name`、`fd -e ts`、`fd config ~/.config`、`fd -H pattern` 搜索隐藏文件。 |
 | `bat` | 带语法高亮的文件查看器，可作为更友好的 `cat`/pager 辅助工具。 | Fish 别名：`c='bat'`。常见用法：`bat file`、`bat -n file` 显示行号、`bat --paging=never file` 禁用分页、`bat -p file` 输出简洁内容。 |
 | `bash-completion` | 为 Bash 增加可编程补全；在仍使用 Bash 的系统上有用。 | Fish 不使用它。常见用法：安装后 Bash 会从标准路径加载补全脚本。 |
@@ -27,6 +28,13 @@
 | `mise` | 多语言运行时/工具版本管理器，可作为单语言版本管理器的更通用替代。 | 不默认安装或加 hook，避免意外改变项目环境。常见用法：`mise use node@22`、`mise install`、`mise exec -- command`、`mise current`。 |
 | `jq` | JSON 处理器，用于在管道里过滤、转换和格式化 JSON。 | 没有配置别名，直接使用。常见用法：`jq . file.json`、`curl ... \| jq`、`jq -r '.items[].name'`。 |
 | `yq` | YAML、JSON、XML、CSV、TOML 处理器，查询语法接近 `jq`。 | 没有配置别名，直接使用。常见用法：`yq . file.yml`、`yq '.services.web.image' docker-compose.yml`、`yq -o=json . file.yml`。 |
+| `jless` | 交互式终端 JSON 查看器，支持按结构导航和搜索。 | 没有配置别名，直接使用。常见用法：`jless file.json`、`curl ... \| jless`。 |
+| `fx` | 交互式 JSON 查看和处理工具，适合探索 API 响应并用 JavaScript 片段处理数据。 | 没有配置别名，直接使用。常见用法：`fx file.json`、`curl ... \| fx`、`fx data.json 'x => x.items.length'`。 |
+| `doggo` / `dog` | 更适合人看的 DNS 查询客户端，用来快速查记录。 | Homebrew 安装的是 `doggo`；Fish 会在没有真实 `dog` 命令时把 `dog` 别名到 `doggo`。常见用法：`dog example.com`、`dog MX example.com`、`dog @1.1.1.1 example.com`。 |
+| `bandwhich` | 终端带宽监控工具，按进程、连接和远端主机展示网络占用。 | 没有配置别名；完整信息通常需要提权。常见用法：`sudo bandwhich`、`bandwhich --raw`。 |
+| `tcping` | TCP 连通性检测工具，适合 ICMP ping 被禁或需要测试具体端口时使用。 | 没有配置别名，直接使用。常见用法：`tcping example.com 443`、`tcping 10.0.0.1 22`。 |
+| `visidata` / `vd` | 终端表格和数据探索工具，可查看 CSV、TSV、JSON、JSONL、SQLite、Excel 等。 | 没有配置别名；命令通常是 `vd`。常见用法：`vd data.csv`、`vd logs.jsonl`、`vd database.sqlite`。 |
+| `jujutsu` / `jj` | Git-compatible 的分布式版本控制系统，在 changes、rebase、历史编辑方面工作流更现代。 | 没有配置别名，也不改 Git 配置；作为可选工具安装，按仓库选择是否使用。常见用法：`jj git init --colocate`、`jj status`、`jj log`。 |
 | `sd` | 简洁快速的正则替换工具，比很多 `sed` 替换写法更直观。 | 没有配置别名，直接使用。常见用法：`sd old new file`、`sd 'foo(.*)' 'bar$1' src/**/*.rs`。 |
 | `just` | 项目任务命令运行器，类似 `make`，但 `justfile` 语法更简单。 | 没有配置别名，直接使用。常见用法：`just`、`just --list`、`just test`、`just build`。 |
 | `starship` | 跨 shell 的命令提示符，本仓库的 Zsh 和 Fish 都使用它。 | 配置文件在 `starship/.config/starship.toml`。常见用法：`starship explain` 查看当前提示符模块解释，`starship timings` 查看耗时，`starship print-config` 打印最终配置。 |

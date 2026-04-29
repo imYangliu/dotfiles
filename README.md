@@ -34,6 +34,7 @@ Core tools expected by the current configs:
 - `vim`
 - `fzf`
 - `ripgrep`
+- `ripgrep-all`
 - `fd`
 - `bat`
 - `openssh-client`
@@ -56,6 +57,13 @@ Optional but recommended:
 - `tealdeer` / `tldr`
 - `jq`
 - `yq`
+- `jless`
+- `fx`
+- `doggo` / `dog`
+- `bandwhich`
+- `tcping`
+- `visidata`
+- `jujutsu` / `jj`
 - `sd`
 - `just`
 - `starship` (if you want the shared prompt package)
