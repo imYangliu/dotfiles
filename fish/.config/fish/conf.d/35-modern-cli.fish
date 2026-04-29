@@ -1,3 +1,7 @@
 # Short aliases for modern CLI tools without shadowing POSIX defaults.
 type -q bat; and alias c='bat'
 type -q fd; and alias f='fd'
+type -q dust; and alias dsize='dust'
+type -q btm; and alias sysmon='btm'
+type -q btop; and alias topplus='btop'
+type -q yazi; and alias yy='yazi'

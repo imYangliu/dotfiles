@@ -17,6 +17,18 @@
 | `fisher` | Fish 插件管理器，用于根据 `fish_plugins` 安装和恢复 Fish 插件。 | 当前插件列表在 `fish/.config/fish/fish_plugins`。常见用法：`fisher install owner/repo`、`fisher remove owner/repo`、`fisher update`。 |
 | `git-delta` / `delta` | 美化 `git diff`、`git show`、交互式 diff 的 pager。 | Git 配置里设置了 `core.pager=delta` 和 `interactive.diffFilter=delta --color-only`。常见用法：直接运行 `git diff`、`git show`、`git log -p`；需要调主题/选项时看 `delta --help`。 |
 | `eza` / `exa` | 现代版 `ls` 替代工具，默认展示更友好，并支持目录优先。 | Fish 会在可用时把 `ls` 别名到 `eza --group-directories-first`，否则用 `exa`，再否则用 macOS `ls -G`。相关别名：`ll='ls -lah'`、`la='ls -A'`、`l='ls -CF'`。 |
+| `dust` | 可视化磁盘占用查看器，适合替代很多 `du` 场景。 | Fish 别名：`dsize='dust'`。常见用法：`dust`、`dust -d 2`、`dust ~/Downloads`。 |
+| `bottom` / `btm` | 终端系统监控器，集中查看 CPU、内存、磁盘、网络、温度和进程信息。 | Fish 别名：`sysmon='btm'`。常见用法：`btm`、`btm --basic`、`btm --battery`。 |
+| `btop` | 更漂亮顺手的交互式进程/资源监控工具，适合日常替代 `top`/`htop`。 | Fish 别名：`topplus='btop'`。常见用法：`btop`；想快速看进程和资源占用时用它。 |
+| `yazi` | 终端文件管理器，支持快速导航和预览。 | Fish 别名：`yy='yazi'`；Fish 函数 `y` 会打开 Yazi，并在退出后把当前 shell 切到 Yazi 最后所在目录。常见用法：`y`、`yy`、`y path/to/dir`。 |
+| `lazygit` | Git 终端 UI，用来交互式处理状态、暂存、提交、分支、stash 和日志。 | 没有配置别名，直接使用。常见用法：在仓库里运行 `lazygit`。 |
+| `atuin` | 可搜索、可同步的 shell 历史增强工具。 | 不默认安装或初始化，避免在未确认同步策略前改变历史行为。常见用法：`atuin search`、`atuin import auto`、`atuin stats`。 |
+| `tealdeer` / `tldr` | Rust 写的快速 TLDR 客户端，用来查看命令示例。 | 命令通常是 `tldr`。常见用法：`tldr tar`、`tldr rg`、`tldr git rebase`、`tldr --update`。 |
+| `mise` | 多语言运行时/工具版本管理器，可作为单语言版本管理器的更通用替代。 | 不默认安装或加 hook，避免意外改变项目环境。常见用法：`mise use node@22`、`mise install`、`mise exec -- command`、`mise current`。 |
+| `jq` | JSON 处理器，用于在管道里过滤、转换和格式化 JSON。 | 没有配置别名，直接使用。常见用法：`jq . file.json`、`curl ... \| jq`、`jq -r '.items[].name'`。 |
+| `yq` | YAML、JSON、XML、CSV、TOML 处理器，查询语法接近 `jq`。 | 没有配置别名，直接使用。常见用法：`yq . file.yml`、`yq '.services.web.image' docker-compose.yml`、`yq -o=json . file.yml`。 |
+| `sd` | 简洁快速的正则替换工具，比很多 `sed` 替换写法更直观。 | 没有配置别名，直接使用。常见用法：`sd old new file`、`sd 'foo(.*)' 'bar$1' src/**/*.rs`。 |
+| `just` | 项目任务命令运行器，类似 `make`，但 `justfile` 语法更简单。 | 没有配置别名，直接使用。常见用法：`just`、`just --list`、`just test`、`just build`。 |
 | `starship` | 跨 shell 的命令提示符，本仓库的 Zsh 和 Fish 都使用它。 | 配置文件在 `starship/.config/starship.toml`。常见用法：`starship explain` 查看当前提示符模块解释，`starship timings` 查看耗时，`starship print-config` 打印最终配置。 |
 | `zoxide` | 更智能的 `cd`，会学习你常去的目录。 | Fish 配置执行 `zoxide init fish \| source`，提供 `z` 和 `zi`。常见用法：`z repo`、`z dotfiles`、`zi` 交互选择目录、`zoxide query name` 查询匹配目录。 |
 

@@ -48,10 +48,22 @@ Optional but recommended:
 - `fisher`
 - `git-delta`
 - `eza` or `exa`
+- `dust`
+- `bottom` / `btm`
+- `btop`
+- `yazi`
+- `lazygit`
+- `tealdeer` / `tldr`
+- `jq`
+- `yq`
+- `sd`
+- `just`
 - `starship` (if you want the shared prompt package)
 - `zoxide`
 
 See [TOOLS.md](TOOLS.md) or [TOOLS.zh-CN.md](TOOLS.zh-CN.md) for a short explanation of what each non-default tool does.
+
+`atuin` and `mise` are documented but intentionally not installed or enabled by default: Atuin changes shell history behavior, and Mise changes per-project runtime resolution. Install and hook them manually only when you want those behaviors.
 
 Package manifests are kept in repo so a new machine can be bootstrapped without copying commands from this README:
 

@@ -19,3 +19,10 @@ direnv
 zoxide
 git-delta
 eza
+# Optional modern CLI tools; bootstrap.sh skips unavailable packages.
+lazygit
+tealdeer
+jq
+yq
+sd
+just
