@@ -1,0 +1,21 @@
+# Install with: sudo apt-get install -y $(grep -vE '^(#|$)' apt-packages.txt)
+# Some optional packages may require a newer Debian/Ubuntu release or external repo.
+
+git
+stow
+bash
+bash-completion
+fish
+zsh
+tmux
+vim
+fzf
+ripgrep
+fd-find
+bat
+openssh-client
+coreutils
+direnv
+zoxide
+git-delta
+eza

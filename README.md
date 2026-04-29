@@ -53,17 +53,25 @@ Optional but recommended:
 
 See [TOOLS.md](TOOLS.md) or [TOOLS.zh-CN.md](TOOLS.zh-CN.md) for a short explanation of what each non-default tool does.
 
+Package manifests are kept in repo so a new machine can be bootstrapped without copying commands from this README:
+
+- `Brewfile` for macOS/Homebrew via `brew bundle --file Brewfile`
+- `apt-packages.txt` for Debian/Ubuntu via `apt-get`
+- `bootstrap.sh` for package install, `stow`, and Fish plugin restore
+
 Debian/Ubuntu example:
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y git stow bash bash-completion fish zsh tmux vim fzf ripgrep fd-find bat openssh-client
+sudo apt-get install -y $(grep -vE '^(#|$)' apt-packages.txt)
 ```
+
+Some Debian/Ubuntu releases may not provide every optional package in `apt-packages.txt`; `bootstrap.sh` falls back to installing packages one by one and skips unavailable optional packages.
 
 macOS/Homebrew example:
 
 ```bash
-brew install git stow bash fish zsh tmux vim fzf ripgrep fd bat eza zoxide starship fnm fisher direnv git-delta openssh coreutils
+brew bundle --file Brewfile
 ```
 
 `fzf` does not need extra manual shell setup as long as it is installed in a standard Debian or Homebrew location. `zsh/.zshrc` auto-detects the common `fzf` completion and key-binding script paths and loads them automatically.
@@ -79,9 +87,15 @@ brew install git stow bash fish zsh tmux vim fzf ripgrep fd bat eza zoxide stars
 ```bash
 git clone <your-dotfiles-repo> ~/dotfiles
 cd ~/dotfiles
-stow bash dircolors fish git inputrc ssh starship tmux vim zsh
+./bootstrap.sh
 exec fish
 tmux source-file ~/.tmux.conf 2>/dev/null || true
+```
+
+If packages are already installed and you only want to relink configs:
+
+```bash
+./bootstrap.sh --no-install
 ```
 
 If you want `zsh` to be the default login shell on a new machine:
