@@ -51,7 +51,7 @@ Optional but recommended:
 - `starship` (if you want the shared prompt package)
 - `zoxide`
 
-See [TOOLS.md](TOOLS.md) for a short explanation of what each non-default tool does.
+See [TOOLS.md](TOOLS.md) or [TOOLS.zh-CN.md](TOOLS.zh-CN.md) for a short explanation of what each non-default tool does.
 
 Debian/Ubuntu example:
 

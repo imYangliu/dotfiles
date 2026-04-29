@@ -1,0 +1,38 @@
+# 工具说明
+
+这个 dotfiles 仓库依赖一些新机器上不一定默认安装的命令行工具。下面说明每个工具的作用、本仓库如何接入它，以及常见用法。
+
+| 工具 | 用途 | 配置、别名和常见用法 |
+| --- | --- | --- |
+| `dircolors` | 提供 GNU `LS_COLORS`，用于让 GNU `ls` 按文件类型显示颜色；macOS/Homebrew 下来自 `coreutils`。 | shell 配置会在存在 `~/.dircolors` 时加载它。常见用法：`dircolors -b ~/.dircolors` 输出可被 shell 执行的颜色配置。 |
+| `fzf` | 交互式模糊搜索器，用于搜索历史、跳目录、选择 git 状态/日志、筛选文件等。 | Fish 使用 `patrickf1/fzf.fish` 插件。快捷键：`Ctrl-R` 搜历史，`Ctrl-G` 搜目录，`Ctrl-S` 搜 git status，`Ctrl-L` 搜 git log，`Ctrl-P` 搜进程，`Ctrl-V` 搜变量。常见用法：`fzf`、`git branch \| fzf`。 |
+| `ripgrep` / `rg` | 高性能递归文本搜索工具，常用于替代 `grep -R`。 | 没有配置别名，直接使用。常见用法：`rg pattern`、`rg -n "TODO" src`、`rg --files`、`rg -i pattern`。 |
+| `fd` | 更快、更好用的文件查找工具，常用于替代很多 `find` 场景。 | Fish 别名：`f='fd'`。常见用法：`fd name`、`fd -e ts`、`fd config ~/.config`、`fd -H pattern` 搜索隐藏文件。 |
+| `bat` | 带语法高亮的文件查看器，可作为更友好的 `cat`/pager 辅助工具。 | Fish 别名：`c='bat'`。常见用法：`bat file`、`bat -n file` 显示行号、`bat --paging=never file` 禁用分页、`bat -p file` 输出简洁内容。 |
+| `bash-completion` | 为 Bash 增加可编程补全；在仍使用 Bash 的系统上有用。 | Fish 不使用它。常见用法：安装后 Bash 会从标准路径加载补全脚本。 |
+| `cloudflared` | 为连接 `git-ssh.linu.me` 提供 SSH ProxyCommand。 | 被 `ssh/.ssh/config` 中的内部 Git SSH host 使用。常见用法：正常执行 `git fetch` / `git push` 到 `git-ssh.linu.me`，底层由 SSH 配置调用 `cloudflared`。 |
+| `coreutils` | 在 macOS 上安装 GNU 工具，包括 `dircolors`/`gdircolors` 等。 | 本仓库没有给它配置别名。macOS 上 GNU 工具通常带 `g` 前缀，例如 `gdate`、`gsed`、`gdircolors`。 |
+| `direnv` | 进入目录时自动加载该项目的 `.envrc`，适合管理项目级环境变量。 | Fish 配置执行 `direnv hook fish \| source`。常见用法：创建 `.envrc`，执行 `direnv allow` 授权，然后可用 `direnv status` 或 `direnv reload`。 |
+| `fnm` | 快速 Node.js 版本管理器，Fish 集成体验比传统 `nvm.sh` 更好。 | Fish 配置执行 `fnm env --use-on-cd --shell fish \| source`。常见用法：`fnm install --lts`、`fnm use 22`、`fnm default 22`、`fnm current`、`fnm list`。 |
+| `fisher` | Fish 插件管理器，用于根据 `fish_plugins` 安装和恢复 Fish 插件。 | 当前插件列表在 `fish/.config/fish/fish_plugins`。常见用法：`fisher install owner/repo`、`fisher remove owner/repo`、`fisher update`。 |
+| `git-delta` / `delta` | 美化 `git diff`、`git show`、交互式 diff 的 pager。 | Git 配置里设置了 `core.pager=delta` 和 `interactive.diffFilter=delta --color-only`。常见用法：直接运行 `git diff`、`git show`、`git log -p`；需要调主题/选项时看 `delta --help`。 |
+| `eza` / `exa` | 现代版 `ls` 替代工具，默认展示更友好，并支持目录优先。 | Fish 会在可用时把 `ls` 别名到 `eza --group-directories-first`，否则用 `exa`，再否则用 macOS `ls -G`。相关别名：`ll='ls -lah'`、`la='ls -A'`、`l='ls -CF'`。 |
+| `starship` | 跨 shell 的命令提示符，本仓库的 Zsh 和 Fish 都使用它。 | 配置文件在 `starship/.config/starship.toml`。常见用法：`starship explain` 查看当前提示符模块解释，`starship timings` 查看耗时，`starship print-config` 打印最终配置。 |
+| `zoxide` | 更智能的 `cd`，会学习你常去的目录。 | Fish 配置执行 `zoxide init fish \| source`，提供 `z` 和 `zi`。常见用法：`z repo`、`z dotfiles`、`zi` 交互选择目录、`zoxide query name` 查询匹配目录。 |
+
+## Git 缩写
+
+Fish abbreviation 会在你确认命令时自动展开，因此历史记录里保留的是完整命令，而不是短缩写。
+
+| 缩写 | 展开为 | 用途 |
+| --- | --- | --- |
+| `gst` | `git status -sb` | 用紧凑格式查看仓库状态和分支信息。 |
+| `ga` | `git add` | 暂存文件。 |
+| `gc` | `git commit` | 创建提交。 |
+| `gcm` | `git commit -m` | 用行内 message 创建提交。 |
+| `gp` | `git push` | 推送当前分支。 |
+| `gl` | `git pull` | 从上游拉取更新。 |
+| `gco` | `git checkout` | 切换分支或检出路径；保留给旧 Git 工作流。 |
+| `gsw` | `git switch` | 切换分支。 |
+| `gd` | `git diff` | 查看未暂存 diff，并通过 `delta` 美化显示。 |
+| `lg` | `git log --graph ...` | 查看紧凑的带分支装饰提交图。 |
