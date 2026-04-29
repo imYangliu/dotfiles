@@ -1,13 +1,19 @@
 [include]
     path = ~/.gitconfig.local
 
+[includeIf "gitdir:/Users/jyxc-dz-0100170/codespace/"]
+    path = ~/.gitconfig-company
+
+[includeIf "gitdir:/Users/jyxc-dz-0100170/workspace/"]
+    path = ~/.gitconfig-company
+
 [user]
     useConfigOnly = true
 
 [core]
     editor = vim
     excludesfile = ~/.gitignore_global
-    pager = less -FRX
+	pager = delta
 
 [init]
     defaultBranch = main
@@ -37,7 +43,7 @@
     enabled = true
 
 [merge]
-    conflictstyle = zdiff3
+	conflictstyle = zdiff3
 
 [diff]
     algorithm = histogram
@@ -54,4 +60,14 @@
     amend = commit --amend
     last = log -1 --stat
     lg = log --graph --decorate --date=short --pretty=format:'%C(yellow)%h%Creset %Cgreen%ad%Creset %C(cyan)%an%Creset %C(auto)%d%Creset %s'
-
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = Monokai Extended
+	plus-style = "syntax #003800"
+	minus-style = "syntax #3f0001"
+	file-style = bold yellow
+	hunk-header-style = syntax bold

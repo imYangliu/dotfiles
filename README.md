@@ -8,6 +8,7 @@ Current packages:
 
 - `bash`
 - `dircolors`
+- `fish`
 - `git`
 - `inputrc`
 - `ssh`
@@ -27,11 +28,14 @@ Core tools expected by the current configs:
 
 - `bash`
 - `dircolors` (provided by `coreutils` on macOS/Homebrew)
+- `fish`
 - `zsh`
 - `tmux`
 - `vim`
 - `fzf`
 - `ripgrep`
+- `fd`
+- `bat`
 - `openssh-client`
 
 Optional but recommended:
@@ -39,21 +43,27 @@ Optional but recommended:
 - `bash-completion`
 - `cloudflared` (required when connecting to `git-ssh.linu.me`)
 - `coreutils` (needed on macOS if you want `dircolors`)
+- `direnv`
+- `fnm`
+- `fisher`
+- `git-delta`
 - `eza` or `exa`
 - `starship` (if you want the shared prompt package)
 - `zoxide`
+
+See [TOOLS.md](TOOLS.md) for a short explanation of what each non-default tool does.
 
 Debian/Ubuntu example:
 
 ```bash
 sudo apt-get update
-sudo apt-get install -y git stow bash bash-completion zsh tmux vim fzf ripgrep openssh-client
+sudo apt-get install -y git stow bash bash-completion fish zsh tmux vim fzf ripgrep fd-find bat openssh-client
 ```
 
 macOS/Homebrew example:
 
 ```bash
-brew install git stow bash zsh tmux vim fzf ripgrep openssh coreutils
+brew install git stow bash fish zsh tmux vim fzf ripgrep fd bat eza zoxide starship fnm fisher direnv git-delta openssh coreutils
 ```
 
 `fzf` does not need extra manual shell setup as long as it is installed in a standard Debian or Homebrew location. `zsh/.zshrc` auto-detects the common `fzf` completion and key-binding script paths and loads them automatically.
@@ -69,8 +79,8 @@ brew install git stow bash zsh tmux vim fzf ripgrep openssh coreutils
 ```bash
 git clone <your-dotfiles-repo> ~/dotfiles
 cd ~/dotfiles
-stow bash dircolors git inputrc ssh starship tmux vim zsh
-exec zsh
+stow bash dircolors fish git inputrc ssh starship tmux vim zsh
+exec fish
 tmux source-file ~/.tmux.conf 2>/dev/null || true
 ```
 
@@ -97,6 +107,7 @@ Recommended local files:
 - `~/.tmux.conf.local`
 - `~/.vimrc.local`
 - `~/.zshrc.local`
+- `~/.config/fish/local.fish`
 - `~/.inputrc.local`
 - `~/.bashrc.local`
 - `~/.profile.local`
@@ -109,7 +120,7 @@ Apply all packages:
 
 ```bash
 cd ~/dotfiles
-stow bash dircolors git inputrc ssh starship tmux vim zsh
+stow bash dircolors fish git inputrc ssh starship tmux vim zsh
 ```
 
 Dry-run a package without modifying anything:
