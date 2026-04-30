@@ -35,6 +35,7 @@ doggo
 bandwhich
 tcping
 visidata
+duckdb
 jujutsu
 sd
 just

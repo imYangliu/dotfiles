@@ -45,6 +45,7 @@
 | `gron` | 把 JSON 展平成便于 `grep` 的赋值行，也可以再还原成 JSON。 | 没有配置别名，直接使用。常见用法：`gron data.json`、`curl ... \| gron \| grep id`、`gron --ungron flat.txt`。 |
 | `moreutils` / `sponge` | 一组额外 Unix 管道工具；`sponge` 会先读完 stdin 再写文件，适合安全做管道式原地修改。 | 没有配置别名，直接使用。常见用法：`jq '.items |= sort' data.json \| sponge data.json`、`grep -v debug app.conf \| sponge app.conf`。 |
 | `visidata` / `vd` | 终端表格和数据探索工具，可查看 CSV、TSV、JSON、JSONL、SQLite、Excel 等。 | 没有配置别名；命令通常是 `vd`。常见用法：`vd data.csv`、`vd logs.jsonl`、`vd database.sqlite`。 |
+| `duckdb` | 嵌入式分析型 SQL 数据库，可直接查询本地文件和数据湖，不需要起服务。 | 没有配置别名，直接使用。常见用法：`duckdb`、`duckdb data.db`、`duckdb -c "select * from read_csv_auto('data.csv') limit 10"`。 |
 | `sd` | 简洁快速的正则替换工具，比很多 `sed` 替换写法更直观。 | 没有配置别名，直接使用。常见用法：`sd old new file`、`sd 'foo(.*)' 'bar$1' src/**/*.rs`。 |
 
 ## 压缩包

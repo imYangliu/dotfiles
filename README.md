@@ -67,6 +67,7 @@ Optional but recommended:
 - `bandwhich`
 - `tcping`
 - `visidata`
+- `duckdb`
 - `jujutsu` / `jj`
 - `sd`
 - `just`

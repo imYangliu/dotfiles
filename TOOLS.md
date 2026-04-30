@@ -45,6 +45,7 @@ This repo expects a few command-line tools that may not be installed by default 
 | `gron` | Flattens JSON into greppable assignment lines and can turn them back into JSON. | No alias; use directly. Common usage: `gron data.json`, `curl ... \| gron \| grep id`, `gron --ungron flat.txt`. |
 | `moreutils` / `sponge` | Extra Unix pipeline helpers; `sponge` reads stdin before writing a file, making safe in-place pipeline edits easier. | No alias; use directly. Common usage: `jq '.items |= sort' data.json \| sponge data.json`, `grep -v debug app.conf \| sponge app.conf`. |
 | `visidata` / `vd` | Terminal spreadsheet and data exploration tool for CSV, TSV, JSON, JSONL, SQLite, Excel, and more. | No alias; command is usually `vd`. Common usage: `vd data.csv`, `vd logs.jsonl`, `vd database.sqlite`. |
+| `duckdb` | Embedded analytical SQL database for querying local files and data lakes without a server. | No alias; use directly. Common usage: `duckdb`, `duckdb data.db`, `duckdb -c "select * from read_csv_auto('data.csv') limit 10"`. |
 | `sd` | Simple, fast, regex-aware find-and-replace tool with friendlier syntax than many `sed` substitutions. | No alias; use directly. Common usage: `sd old new file`, `sd 'foo(.*)' 'bar$1' src/**/*.rs`. |
 
 ## Archives
