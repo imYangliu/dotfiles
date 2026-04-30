@@ -55,10 +55,14 @@ Optional but recommended:
 - `yazi`
 - `lazygit`
 - `tealdeer` / `tldr`
-- `jq`
+- `jaq` (used as `jq` in interactive shells when installed)
 - `yq`
 - `jless`
 - `fx`
+- `dasel`
+- `gron`
+- `moreutils` / `sponge`
+- `ouch`
 - `doggo` / `dog`
 - `bandwhich`
 - `tcping`

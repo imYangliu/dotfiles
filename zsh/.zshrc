@@ -181,6 +181,10 @@ if (( $+commands[vim] )); then
   alias vi='vim'
 fi
 
+if (( $+commands[jaq] )); then
+  alias jq='jaq'
+fi
+
 if (( $+commands[zoxide] )); then
   eval "$(zoxide init zsh)"
 fi

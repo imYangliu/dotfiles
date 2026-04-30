@@ -37,12 +37,21 @@
 
 | 工具 | 用途 | 配置、别名和常见用法 |
 | --- | --- | --- |
-| `jq` | JSON 处理器，用于在管道里过滤、转换和格式化 JSON。 | 没有配置别名，直接使用。常见用法：`jq . file.json`、`curl ... \| jq`、`jq -r '.items[].name'`。 |
-| `yq` | YAML、JSON、XML、CSV、TOML 处理器，查询语法接近 `jq`。 | 没有配置别名，直接使用。常见用法：`yq . file.yml`、`yq '.services.web.image' docker-compose.yml`、`yq -o=json . file.yml`。 |
+| `jaq` / `jq` | 更快的 JSON 处理器，用于在管道里过滤、转换和格式化 JSON。 | 安装了 `jaq` 时，交互式 shell 会把 `jq` 别名到 `jaq`。常见用法：`jq . file.json`、`curl ... \| jq`、`jq -r '.items[].name'`。 |
+| `yq` | YAML、JSON、XML、CSV、TOML 处理器，查询语法接近 `jq`。 | 没有配置别名，直接使用；支持用 `-i` 原地写入。常见用法：`yq . file.yml`、`yq '.services.web.image' docker-compose.yml`、`yq -i '.services.web.image = "app:latest"' docker-compose.yml`。 |
 | `jless` | 交互式终端 JSON 查看器，支持按结构导航和搜索。 | 没有配置别名，直接使用。常见用法：`jless file.json`、`curl ... \| jless`。 |
 | `fx` | 交互式 JSON 查看和处理工具，适合探索 API 响应并用 JavaScript 片段处理数据。 | 没有配置别名，直接使用。常见用法：`fx file.json`、`curl ... \| fx`、`fx data.json 'x => x.items.length'`。 |
+| `dasel` | 用同一套命令查询和编辑 JSON、YAML、TOML、XML、CSV。 | 没有配置别名，直接使用。常见用法：`dasel -f config.yml '.services.web.image'`、`dasel put -f config.yml -t string '.services.web.image' app:latest`。 |
+| `gron` | 把 JSON 展平成便于 `grep` 的赋值行，也可以再还原成 JSON。 | 没有配置别名，直接使用。常见用法：`gron data.json`、`curl ... \| gron \| grep id`、`gron --ungron flat.txt`。 |
+| `moreutils` / `sponge` | 一组额外 Unix 管道工具；`sponge` 会先读完 stdin 再写文件，适合安全做管道式原地修改。 | 没有配置别名，直接使用。常见用法：`jq '.items |= sort' data.json \| sponge data.json`、`grep -v debug app.conf \| sponge app.conf`。 |
 | `visidata` / `vd` | 终端表格和数据探索工具，可查看 CSV、TSV、JSON、JSONL、SQLite、Excel 等。 | 没有配置别名；命令通常是 `vd`。常见用法：`vd data.csv`、`vd logs.jsonl`、`vd database.sqlite`。 |
 | `sd` | 简洁快速的正则替换工具，比很多 `sed` 替换写法更直观。 | 没有配置别名，直接使用。常见用法：`sd old new file`、`sd 'foo(.*)' 'bar$1' src/**/*.rs`。 |
+
+## 压缩包
+
+| 工具 | 用途 | 配置、别名和常见用法 |
+| --- | --- | --- |
+| `ouch` | 更友好的压缩和解压工具，会根据文件名推断格式。 | 没有配置别名，直接使用。常见用法：`ouch decompress archive.tar.gz`、`ouch compress src output.zip`、`ouch list archive.7z`。 |
 
 ## 项目环境与任务
 

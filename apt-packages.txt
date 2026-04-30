@@ -23,10 +23,14 @@ eza
 # Optional modern CLI tools; bootstrap.sh skips unavailable packages.
 lazygit
 tealdeer
-jq
+jaq
 yq
 jless
 fx
+dasel
+gron
+moreutils
+ouch
 doggo
 bandwhich
 tcping

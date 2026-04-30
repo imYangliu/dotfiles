@@ -37,12 +37,21 @@ This repo expects a few command-line tools that may not be installed by default 
 
 | Tool | Why it is used | Config, aliases, and common usage |
 | --- | --- | --- |
-| `jq` | JSON processor for filtering, transforming, and pretty-printing JSON in pipelines. | No alias; use directly. Common usage: `jq . file.json`, `curl ... \| jq`, `jq -r '.items[].name'`. |
-| `yq` | YAML, JSON, XML, CSV, and TOML processor with jq-like query syntax. | No alias; use directly. Common usage: `yq . file.yml`, `yq '.services.web.image' docker-compose.yml`, `yq -o=json . file.yml`. |
+| `jaq` / `jq` | Fast JSON processor for filtering, transforming, and pretty-printing JSON in pipelines. | Interactive shells alias `jq` to `jaq` when `jaq` is installed. Common usage: `jq . file.json`, `curl ... \| jq`, `jq -r '.items[].name'`. |
+| `yq` | YAML, JSON, XML, CSV, and TOML processor with jq-like query syntax. | No alias; use directly. Supports in-place edits with `-i`. Common usage: `yq . file.yml`, `yq '.services.web.image' docker-compose.yml`, `yq -i '.services.web.image = "app:latest"' docker-compose.yml`. |
 | `jless` | Interactive terminal JSON viewer with structural navigation and search. | No alias; use directly. Common usage: `jless file.json`, `curl ... \| jless`. |
 | `fx` | Interactive JSON viewer and processor, useful for exploring API responses and applying JavaScript snippets. | No alias; use directly. Common usage: `fx file.json`, `curl ... \| fx`, `fx data.json 'x => x.items.length'`. |
+| `dasel` | Query and edit JSON, YAML, TOML, XML, and CSV from one command. | No alias; use directly. Common usage: `dasel -f config.yml '.services.web.image'`, `dasel put -f config.yml -t string '.services.web.image' app:latest`. |
+| `gron` | Flattens JSON into greppable assignment lines and can turn them back into JSON. | No alias; use directly. Common usage: `gron data.json`, `curl ... \| gron \| grep id`, `gron --ungron flat.txt`. |
+| `moreutils` / `sponge` | Extra Unix pipeline helpers; `sponge` reads stdin before writing a file, making safe in-place pipeline edits easier. | No alias; use directly. Common usage: `jq '.items |= sort' data.json \| sponge data.json`, `grep -v debug app.conf \| sponge app.conf`. |
 | `visidata` / `vd` | Terminal spreadsheet and data exploration tool for CSV, TSV, JSON, JSONL, SQLite, Excel, and more. | No alias; command is usually `vd`. Common usage: `vd data.csv`, `vd logs.jsonl`, `vd database.sqlite`. |
 | `sd` | Simple, fast, regex-aware find-and-replace tool with friendlier syntax than many `sed` substitutions. | No alias; use directly. Common usage: `sd old new file`, `sd 'foo(.*)' 'bar$1' src/**/*.rs`. |
+
+## Archives
+
+| Tool | Why it is used | Config, aliases, and common usage |
+| --- | --- | --- |
+| `ouch` | Friendly archive compression and extraction tool that infers formats from filenames. | No alias; use directly. Common usage: `ouch decompress archive.tar.gz`, `ouch compress src output.zip`, `ouch list archive.7z`. |
 
 ## Project Environments And Tasks
 
