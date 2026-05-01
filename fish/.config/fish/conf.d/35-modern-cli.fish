@@ -1,6 +1,11 @@
 # Short aliases for modern CLI tools without shadowing POSIX defaults.
 type -q bat; and alias c='bat'
-type -q fd; and alias f='fd'
+if type -q fd
+    alias f='fd'
+else if type -q fdfind
+    alias f='fdfind'
+    alias fd='fdfind'
+end
 type -q dust; and alias dsize='dust'
 type -q btm; and alias sysmon='btm'
 type -q btop; and alias topplus='btop'

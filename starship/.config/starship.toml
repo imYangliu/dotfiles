@@ -2,7 +2,7 @@
 # Docs: https://starship.rs/config/
 
 add_newline = true
-command_timeout = 500
+command_timeout = 3000
 scan_timeout = 30
 format = "$username$hostname$directory$git_branch$git_status$fill$cmd_duration$jobs$status$line_break$character"
 right_format = "$time"

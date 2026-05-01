@@ -4,7 +4,7 @@ if type -q eza
 else if type -q exa
     alias ls='exa --group-directories-first'
 else
-    alias ls='ls -G'
+    alias ls='ls --color=auto'
 end
 
 alias ll='ls -lah'

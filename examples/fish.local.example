@@ -1,0 +1,25 @@
+# Machine-local fish overrides. Copy to ~/.config/fish/local.fish.
+# This file is sourced last by config.fish.
+
+# Example: WSL proxy via the Windows host (adjust port to match your proxy).
+# if test -n "$WSL_DISTRO_NAME"
+#     function __wsl_host_ip
+#         ip route show default 2>/dev/null | awk '{print $3; exit}'
+#     end
+#     function proxy-on
+#         set host_ip (__wsl_host_ip)
+#         if test -z "$host_ip"; echo 'proxy-on: cannot determine host IP' >&2; return 1; end
+#         set -gx HTTP_PROXY  "http://$host_ip:7890"
+#         set -gx HTTPS_PROXY "http://$host_ip:7890"
+#         set -gx ALL_PROXY   "http://$host_ip:7890"
+#         set -gx http_proxy $HTTP_PROXY; set -gx https_proxy $HTTPS_PROXY; set -gx all_proxy $ALL_PROXY
+#         set -gx NO_PROXY "localhost,127.0.0.1,::1"; set -gx no_proxy $NO_PROXY
+#     end
+#     function proxy-off
+#         set -e HTTP_PROXY HTTPS_PROXY ALL_PROXY http_proxy https_proxy all_proxy NO_PROXY no_proxy
+#     end
+#     proxy-on
+# end
+
+# Example: add a project-specific bin dir to PATH.
+# fish_add_path "$HOME/work/bin"

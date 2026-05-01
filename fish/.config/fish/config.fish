@@ -3,12 +3,7 @@
 if status is-interactive
     set -g fish_greeting
     set -g fish_escape_delay_ms 10
-
     fish_vi_key_bindings
-    bind \cg fzf_cd_widget
-    bind -M insert \cg fzf_cd_widget
-    bind -M default \cg fzf_cd_widget
-    bind -M visual \cg fzf_cd_widget
 
     if type -q starship
         starship init fish | source

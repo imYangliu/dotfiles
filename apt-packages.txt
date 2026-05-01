@@ -39,3 +39,8 @@ duckdb
 jujutsu
 sd
 just
+btop
+yazi
+starship
+bottom
+fnm

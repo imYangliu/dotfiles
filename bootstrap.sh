@@ -45,6 +45,63 @@ install_apt() {
   fi
 }
 
+# Download the latest GitHub release asset matching a pattern and install the named binary.
+_gh_install() {
+  local cmd="$1" repo="$2" asset_pat="$3" bin_name="${4:-$1}"
+  if command -v "$cmd" >/dev/null 2>&1; then
+    printf 'already installed: %s\n' "$cmd"
+    return 0
+  fi
+  log "Installing $cmd"
+  local url
+  url=$(curl -fsSL "https://api.github.com/repos/$repo/releases/latest" \
+    | grep '"browser_download_url"' | grep -E "$asset_pat" | head -1 | cut -d'"' -f4)
+  if [ -z "$url" ]; then
+    warn "Could not find release asset for $cmd ($repo)"
+    return 1
+  fi
+  local tmp; tmp=$(mktemp -d)
+  curl -fsSL "$url" -o "$tmp/dl"
+  case "$url" in
+    *.tar.gz|*.tgz) tar xzf "$tmp/dl" -C "$tmp" ;;
+    *.zip)          unzip -q "$tmp/dl" -d "$tmp" ;;
+  esac
+  local found; found=$(find "$tmp" -name "$bin_name" -type f | head -1)
+  [ -z "$found" ] && found="$tmp/dl"
+  mkdir -p "$HOME/.local/bin"
+  cp "$found" "$HOME/.local/bin/$cmd"
+  chmod +x "$HOME/.local/bin/$cmd"
+  rm -rf "$tmp"
+}
+
+install_linux_extras() {
+  mkdir -p "$HOME/.local/bin"
+
+  # fnm — official install script
+  if ! command -v fnm >/dev/null 2>&1; then
+    log "Installing fnm"
+    curl -fsSL https://fnm.vercel.app/install \
+      | bash -s -- --install-dir "$HOME/.local/bin" --skip-shell
+  fi
+
+  # fx — via npm
+  if ! command -v fx >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
+    log "Installing fx"
+    npm install -g fx --silent
+  fi
+
+  # GitHub release binaries
+  _gh_install ouch      ouch-org/ouch                'x86_64-unknown-linux-musl\.tar\.gz'
+  _gh_install jaq       01mf02/jaq                   'jaq-x86_64-unknown-linux-musl"'
+  _gh_install jless     PaulJuliusMartinez/jless      'x86_64.*linux.*\.zip'
+  _gh_install btm       ClementTsang/bottom           'x86_64-unknown-linux-musl\.tar\.gz'   btm
+  _gh_install yazi      sxyazi/yazi                   'yazi-x86_64-unknown-linux-musl\.zip'  yazi
+  _gh_install duckdb    duckdb/duckdb                 'duckdb_cli-linux-amd64\.zip'           duckdb
+  _gh_install jj        jj-vcs/jj                    'x86_64-unknown-linux-musl\.tar\.gz'   jj
+  _gh_install doggo     mr-karan/doggo                'linux_amd64\.tar\.gz'
+  _gh_install bandwhich imsnif/bandwhich              'x86_64-unknown-linux-musl\.tar\.gz'
+}
+
 install_packages() {
   case "$(uname -s)" in
     Darwin)
@@ -52,6 +109,7 @@ install_packages() {
       ;;
     Linux)
       install_apt
+      install_linux_extras
       ;;
     *)
       warn "Unsupported OS: $(uname -s). Install packages manually, then re-run with --no-install."
@@ -71,14 +129,18 @@ stow_dotfiles() {
 }
 
 restore_fish_plugins() {
-  if command -v fish >/dev/null 2>&1; then
-    if fish -lc 'type -q fisher' >/dev/null 2>&1; then
-      log "Restoring Fish plugins with fisher"
-      fish -lc 'fisher update'
-    else
-      warn "fisher not found in Fish; skipping Fish plugin restore"
-    fi
+  if ! command -v fish >/dev/null 2>&1; then
+    warn "fish not found; skipping Fish plugin restore"
+    return 0
   fi
+
+  if ! fish -lc 'type -q fisher' >/dev/null 2>&1; then
+    log "Installing fisher"
+    fish -lc 'curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher'
+  fi
+
+  log "Restoring Fish plugins with fisher"
+  fish -lc 'fisher update'
 }
 
 usage() {
