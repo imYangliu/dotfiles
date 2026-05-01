@@ -48,6 +48,7 @@ Optional but recommended:
 - `fnm`
 - `fisher`
 - `git-delta`
+- `bit` / `bit-git`
 - `eza` or `exa`
 - `dust`
 - `bottom` / `btm`

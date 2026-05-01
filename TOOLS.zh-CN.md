@@ -30,6 +30,7 @@
 | 工具 | 用途 | 配置、别名和常见用法 |
 | --- | --- | --- |
 | `git-delta` / `delta` | 美化 `git diff`、`git show`、交互式 diff 的 pager。 | Git 配置里设置了 `core.pager=delta` 和 `interactive.diffFilter=delta --color-only`。常见用法：直接运行 `git diff`、`git show`、`git log -p`；需要调主题/选项时看 `delta --help`。 |
+| `bit` / `bit-git` | 更友好的 Git CLI 封装，优化 status、branch、log 和常用工作流输出。 | Fish 补全在 `fish/.config/fish/completions/bit.fish`。常见用法：`bit status`、`bit branch`、`bit log`、`bit add`、`bit commit`；不支持的子命令会回退给 Git。 |
 | `lazygit` | Git 终端 UI，用来交互式处理状态、暂存、提交、分支、stash 和日志。 | 没有配置别名，直接使用。常见用法：在仓库里运行 `lazygit`。 |
 | `jujutsu` / `jj` | Git-compatible 的分布式版本控制系统，在 changes、rebase、历史编辑方面工作流更现代。 | 没有配置别名，也不改 Git 配置；作为可选工具安装，按仓库选择是否使用。常见用法：`jj git init --colocate`、`jj status`、`jj log`。 |
 

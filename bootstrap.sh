@@ -98,6 +98,7 @@ install_linux_extras() {
   _gh_install yazi      sxyazi/yazi                   'yazi-x86_64-unknown-linux-musl\.zip'  yazi
   _gh_install duckdb    duckdb/duckdb                 'duckdb_cli-linux-amd64\.zip'           duckdb
   _gh_install jj        jj-vcs/jj                    'x86_64-unknown-linux-musl\.tar\.gz'   jj
+  _gh_install bit       chriswalz/bit                 'linux_amd64\.tar\.gz'
   _gh_install doggo     mr-karan/doggo                'linux_amd64\.tar\.gz'
   _gh_install bandwhich imsnif/bandwhich              'x86_64-unknown-linux-musl\.tar\.gz'
 }

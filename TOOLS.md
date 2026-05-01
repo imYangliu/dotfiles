@@ -30,6 +30,7 @@ This repo expects a few command-line tools that may not be installed by default 
 | Tool | Why it is used | Config, aliases, and common usage |
 | --- | --- | --- |
 | `git-delta` / `delta` | Pretty pager for `git diff`, `git show`, and interactive diffs. | Git config sets `core.pager=delta` and `interactive.diffFilter=delta --color-only`. Common usage: `git diff`, `git show`, `git log -p`; run `delta --help` for themes/options. |
+| `bit` / `bit-git` | Friendly Git CLI wrapper with cleaner status, branch, log, and common workflow output. | Fish completion lives in `fish/.config/fish/completions/bit.fish`. Common usage: `bit status`, `bit branch`, `bit log`, `bit add`, `bit commit`; it falls back to Git for unsupported subcommands. |
 | `lazygit` | Terminal UI for Git status, staging, commits, branches, stash, and logs. | No alias; use directly. Common usage: `lazygit` inside a repo when you want an interactive Git workflow. |
 | `jujutsu` / `jj` | Git-compatible distributed version control system with a modern workflow for changes, rebasing, and history editing. | No alias and no Git config changes; install it as an optional tool and opt into using it per repo. Common usage: `jj git init --colocate`, `jj status`, `jj log`. |
 
