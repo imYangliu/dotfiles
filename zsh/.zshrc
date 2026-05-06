@@ -145,7 +145,7 @@ function zle-line-finish {
 zle -N zle-line-finish
 
 function TRAPEXIT() {
-  _zsh_emit_cursor_style block-blink
+  (( ${+functions[_zsh_emit_cursor_style]} )) && _zsh_emit_cursor_style block-blink
 }
 
 # Prompt.
@@ -193,3 +193,6 @@ fi
 if [[ -r "$HOME/.zshrc.local" ]]; then
   . "$HOME/.zshrc.local"
 fi
+
+# thefuck: correct previous command with `fuck`
+eval $(thefuck --alias)
