@@ -1,6 +1,3 @@
-[include]
-    path = ~/.gitconfig.local
-
 [includeIf "gitdir:/Users/jyxc-dz-0100170/codespace/"]
     path = ~/.gitconfig-company
 
@@ -71,3 +68,7 @@
 	minus-style = "syntax #3f0001"
 	file-style = bold yellow
 	hunk-header-style = syntax bold
+
+# Machine-local overrides win — keep this include last.
+[include]
+    path = ~/.gitconfig.local
