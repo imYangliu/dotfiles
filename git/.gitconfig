@@ -40,7 +40,8 @@
     enabled = true
 
 [merge]
-	conflictstyle = zdiff3
+	# Per-machine override in ~/.gitconfig.local — older git (< 2.35)
+	# rejects unknown styles at parse time, so leave the default unset here.
 
 [diff]
     algorithm = histogram
