@@ -145,7 +145,17 @@ function zle-line-finish {
 zle -N zle-line-finish
 
 function TRAPEXIT() {
-  (( ${+functions[_zsh_emit_cursor_style]} )) && _zsh_emit_cursor_style block-blink
+  [[ -o interactive ]] || return 0
+  [[ -t 1 ]] || return 0
+  [[ "$TERM" == dumb ]] && return 0
+  local seq=$'\e[1 q'
+  if [[ -n "$TMUX" ]]; then
+    printf '\ePtmux;\e%s\e\\' "$seq"
+  elif [[ "$TERM" == screen* ]]; then
+    printf '\eP%s\e\\' "$seq"
+  else
+    printf '%s' "$seq"
+  fi
 }
 
 # Prompt.
